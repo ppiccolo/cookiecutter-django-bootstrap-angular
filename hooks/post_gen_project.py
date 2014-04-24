@@ -14,6 +14,12 @@ def run(cmd):
         print(p.stdout.read())
         sys.exit(p.returncode)
 
-if not os.path.isfile('bin/buildout'):
-    run('%s bootstrap.py' % sys.executable)
-    run('bin/buildout')
+if not os.path.isfile('.installed.cfg'):
+    if subprocess.call('which buildout', shell=True):
+        print('bootstraping project using %s...' % sys.executable)
+        run('%s bootstrap.py' % sys.executable)
+        print('running bin/buildout...')
+        run('bin/buildout')
+    else:
+        print('running buildout...')
+        run('buildout')
