@@ -3,7 +3,6 @@ from setuptools import setup, find_packages
 version = '{{cookiecutter.version}}'
 
 install_requires = []
-install_requires.append('ordereddict')
 
 setup(name='{{cookiecutter.repo_name}}',
       version=version,
@@ -23,7 +22,5 @@ setup(name='{{cookiecutter.repo_name}}',
       entry_points="""
       # -*- Entry points: -*-
       [console_scripts]
-      slimerjs=scripts:slimerjs
-      bower-dev=jstools:bower
       """,
       )
