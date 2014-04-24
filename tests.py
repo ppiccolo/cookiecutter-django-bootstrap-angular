@@ -27,4 +27,4 @@ class TestTemplate(unittest.TestCase):
         os.chdir(os.path.join(self.wd, 'repo_name'))
         for filename in self.scripts:
             self.assertTrue(os.path.isfile(filename),
-                            filename + 'not generated')
+                            filename + ' not generated')
