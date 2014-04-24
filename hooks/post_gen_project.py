@@ -10,7 +10,6 @@ def run(cmd):
     p = subprocess.Popen(cmd, shell=True)
     p.wait()
     if p.returncode:
-        print(p.stdout.read())
         sys.exit(p.returncode)
 
 if not os.path.isfile('.installed.cfg'):
