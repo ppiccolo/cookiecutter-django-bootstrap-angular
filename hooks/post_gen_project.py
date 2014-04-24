@@ -7,8 +7,7 @@ import os
 
 
 def run(cmd):
-    p = subprocess.Popen(cmd, shell=True,
-                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p = subprocess.Popen(cmd, shell=True)
     p.wait()
     if p.returncode:
         print(p.stdout.read())

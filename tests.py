@@ -10,8 +10,12 @@ class TestTemplate(unittest.TestCase):
 
     scripts = [
         'bin/bower',
-        'bin/grunt',
         'bin/django-serve',
+    ]
+
+    filenames = [
+        'parts/wsgi/wsgi',
+        'repo_name.egg-info/entry_points.txt',
     ]
 
     def setUp(self):
