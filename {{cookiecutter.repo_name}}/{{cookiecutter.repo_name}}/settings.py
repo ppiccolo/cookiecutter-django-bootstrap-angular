@@ -155,7 +155,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'accounts.middleware.Private',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -167,7 +166,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    "{{ cookiecutter.project_name }}.jstools.context_processors",
     'social.apps.django_app.context_processors.backends',
 )
 
@@ -194,9 +192,7 @@ INSTALLED_APPS = (
     'south',
     'registration',
     'social.apps.django_app.default',
-    'taggit',
     'autoslug',
-    'bootstrap3',
 )
 
 LOGIN_URL          = '/accounts/login/'
