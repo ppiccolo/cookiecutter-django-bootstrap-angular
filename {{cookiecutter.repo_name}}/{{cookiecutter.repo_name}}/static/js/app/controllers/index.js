@@ -1,5 +1,6 @@
 'use strict';
 
-angular.module('{{cookiecutter.project_name}}').controller('IndexController', ['$scope', function ($scope) {
+angular.module('{{cookiecutter.project_name}}.controllers', [])
+  .controller('IndexController', ['$scope', function ($scope) {
     $scope.claim = 'Hello World !';
-}]);
+  }]);

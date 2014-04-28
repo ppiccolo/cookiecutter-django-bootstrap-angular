@@ -3,12 +3,15 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function(){
-  beforeEach(module('{{ cookiecutter.project_name }}.controllers'));
+  var scope;
+
+  beforeEach(module('test.controllers'));
 
 
-  it('should ....', inject(function($controller) {
+  it('should ....', inject(function($controller, $rootScope) {
     //spec body
-    var indexCtrl = $controller('IndexController');
+    scope = $rootScope.$new();
+    var indexCtrl = $controller('IndexController', {$scope: scope});
     expect(indexCtrl).toBeDefined();
   }));
 });

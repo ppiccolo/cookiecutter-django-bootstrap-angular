@@ -7,5 +7,10 @@ angular.module('{{cookiecutter.project_name}}', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.router'
+  'ui.router',
+
+  '{{cookiecutter.project_name}}.filters',
+  '{{cookiecutter.project_name}}.services',
+  '{{cookiecutter.project_name}}.directives',
+  '{{cookiecutter.project_name}}.controllers'
 ]);

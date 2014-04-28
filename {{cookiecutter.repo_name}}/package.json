@@ -13,7 +13,7 @@
   "scripts": {
     "postinstall": "bower install",
 
-    "test": "karma start {{ cookiecutter.repo_name }}/assets/js/test/karma.conf.js",
+    "test": "karma start {{ cookiecutter.repo_name }}/static/js/test/karma.conf.js",
 
     "update-webdriver": "webdriver-manager update",
     "protractor": "protractor test/protractor-conf.js",
