@@ -3,7 +3,7 @@ cookiecutter-django-bootstrap-angular
 
 A cookiecutter_ template for Django - Twitter Bootstrap - AngularJS - Buildout.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
+cookiecutter: https://github.com/audreyr/cookiecutter
 
 Description
 -----------
