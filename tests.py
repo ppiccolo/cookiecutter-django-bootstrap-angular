@@ -32,3 +32,6 @@ class TestTemplate(unittest.TestCase):
         for filename in self.scripts:
             self.assertTrue(os.path.isfile(filename),
                             filename + ' not generated')
+        for filename in self.filenames:
+            self.assertTrue(os.path.isfile(filename),
+                            filename + ' not generated')
