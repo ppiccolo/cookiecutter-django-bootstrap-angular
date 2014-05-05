@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cookiecutter import main
+import subprocess
 import unittest
 import tempfile
 import shutil
@@ -10,6 +11,7 @@ class TestTemplate(unittest.TestCase):
 
     scripts = [
         'bin/bower',
+        'bin/django-manage',
         'bin/django-serve',
     ]
 
@@ -35,3 +37,8 @@ class TestTemplate(unittest.TestCase):
         for filename in self.filenames:
             self.assertTrue(os.path.isfile(filename),
                             filename + ' not generated')
+
+        ret = subprocess.call(
+            'bin/django-manage syncdb --noinput --migrate',
+            shell=True)
+        self.assertEqual(ret, 0)

@@ -10,10 +10,12 @@ install_requires = [
     'DjangoDevKit',
     'django-registration',
     'django-autoslug',
+    'south',
 ]
 
 test_requires = [
     'django-webtest',
+    'coverage',
 ]
 
 
