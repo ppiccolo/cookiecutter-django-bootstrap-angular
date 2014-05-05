@@ -9,7 +9,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('{{ cookiecutter.author_name }}', '{{ cookiecutter.email }}'),
 )
 
 MANAGERS = ADMINS
@@ -98,10 +98,9 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-if path.isdir(path.expanduser('~/root/var')):
-    MEDIA_ROOT = path.expanduser('~/root/var/media/')
-else:
-    MEDIA_ROOT = path.realpath(path.join(PROJECT_DIR, '..', 'media'))
+MEDIA_ROOT = path.realpath(path.join(PROJECT_DIR, '..', 'medias'))
+if not os.path.isdir(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -121,14 +120,9 @@ STATIC_ROOT = path.join(PROJECT_DIR, '..', 'static')
 STATIC_URL = '/static/'
 
 
-DEVELOP_DIR = path.join(PROJECT_DIR, '..', 'src')
-if not path.isdir(DEVELOP_DIR):
-    DEVELOP_DIR = path.expanduser('~/root/var/share/')
-
 # Additional locations of static files
 STATICFILES_DIRS = (
     path.join(PROJECT_DIR, 'static'),
-    path.join(BRAND_ROOT, 'static'),
 )
 
 # List of finder classes that know how to find static files in
