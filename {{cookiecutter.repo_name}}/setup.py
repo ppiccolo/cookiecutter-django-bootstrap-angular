@@ -1,5 +1,6 @@
-from setuptools import setup
 from setuptools import find_packages
+from setuptools import setup
+import sys
 import os
 
 version = '{{cookiecutter.version}}'
@@ -21,6 +22,9 @@ test_requires = [
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
+if 'dev' in sys.argv and os.path.isfile('.installed.cfg'):
+    os.remove('.installed.cfg')
 
 
 setup(
