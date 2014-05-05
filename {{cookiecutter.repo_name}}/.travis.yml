@@ -9,3 +9,4 @@ install:
   - buildout install node sh
 script:
   - DJANGO_SETTINGS_MODULE=repo_name.settings nosetests
+  - gulp test
