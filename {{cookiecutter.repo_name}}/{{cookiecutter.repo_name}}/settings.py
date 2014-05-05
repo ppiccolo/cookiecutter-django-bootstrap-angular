@@ -1,6 +1,7 @@
 # Django settings for {{ cookiecutter.project_name }} project.
 import os
 from os import path
+from django.template.defaultfilters import slugify  # NOQA
 
 PROJECT_DIR = path.dirname(path.abspath(__file__))
 
@@ -8,7 +9,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('{{ cookiecutter.author_name }}', '{{ cookiecutter.email }}'),
 )
 
 MANAGERS = ADMINS
@@ -50,7 +51,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': '{{ cookiecutter.project_name }}',
         'TIMEOUT': 60,
-        'KEY_PREFIX': os.environ.get('MEMCACHED_KEY_PREFIX', '{{ cookiecutter.project_name }}'),
+        'KEY_PREFIX': os.environ.get('MEMCACHED_KEY_PREFIX',
+                                     '{{ cookiecutter.project_name }}'),
         'OPTIONS': {
             'MAX_ENTRIES': 10000,
             'CULL_FREQUENCY': 3,
@@ -96,10 +98,9 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-if path.isdir(path.expanduser('~/root/var')):
-    MEDIA_ROOT = path.expanduser('~/root/var/media/')
-else:
-    MEDIA_ROOT = path.realpath(path.join(PROJECT_DIR, '..', 'media'))
+MEDIA_ROOT = path.realpath(path.join(PROJECT_DIR, '..', 'medias'))
+if not os.path.isdir(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -119,14 +120,9 @@ STATIC_ROOT = path.join(PROJECT_DIR, '..', 'static')
 STATIC_URL = '/static/'
 
 
-DEVELOP_DIR = path.join(PROJECT_DIR, '..', 'src')
-if not path.isdir(DEVELOP_DIR):
-    DEVELOP_DIR = path.expanduser('~/root/var/share/')
-
 # Additional locations of static files
 STATICFILES_DIRS = (
     path.join(PROJECT_DIR, 'static'),
-    path.join(BRAND_ROOT, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -166,7 +162,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    'social.apps.django_app.context_processors.backends',
 )
 
 ROOT_URLCONF = '{{ cookiecutter.project_name }}.urls'
@@ -176,7 +171,6 @@ WSGI_APPLICATION = '{{ cookiecutter.project_name }}.wsgi.application'
 
 TEMPLATE_DIRS = (
     path.realpath(path.join(PROJECT_DIR, '..', 'templates')),
-    path.realpath(path.join(BRAND_ROOT, '..', 'templates')),
 )
 
 INSTALLED_APPS = (
@@ -191,15 +185,13 @@ INSTALLED_APPS = (
 
     'south',
     'registration',
-    'social.apps.django_app.default',
     'autoslug',
 )
 
-LOGIN_URL          = '/accounts/login/'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_ERROR_URL    = '/accounts/login-error'
+LOGIN_ERROR_URL = '/accounts/login-error'
 
-from django.template.defaultfilters import slugify
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -229,9 +221,3 @@ LOGGING = {
         },
     }
 }
-
-
-if path.isdir(path.expanduser('~/root/var')):
-    CACHE_DIRECTORY = path.expanduser('~/root/var/cache/')
-else:
-    CACHE_DIRECTORY = path.join(MEDIA_ROOT, 'cache')
