@@ -2,6 +2,9 @@
 cookiecutter-django-bootstrap-angular
 ======================================
 
+.. image:: https://travis-ci.org/bearstech/cookiecutter-django-bootstrap-angular.svg
+   :target: https://travis-ci.org/bearstech/cookiecutter-django-bootstrap-angular
+
 A cookiecutter_ template for Django - Twitter Bootstrap - AngularJS - Buildout.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
