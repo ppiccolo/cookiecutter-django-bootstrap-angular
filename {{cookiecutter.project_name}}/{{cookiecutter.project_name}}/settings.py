@@ -78,7 +78,7 @@ USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
 MEDIA_ROOT = path.realpath(path.join(PROJECT_DIR, '..', 'medias'))
-if not os.path.isdir(MEDIA_ROOT):
+if not os.path.isdir(MEDIA_ROOT):  # pragma: no cover
     os.makedirs(MEDIA_ROOT)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a

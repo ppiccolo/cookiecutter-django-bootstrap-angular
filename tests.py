@@ -49,3 +49,6 @@ class TestTemplate(unittest.TestCase):
             tox = 'tox'
         ret = subprocess.call(tox, shell=True)
         self.assertEqual(ret, 0)
+
+        ret = subprocess.call('bin/gulp test', shell=True)
+        self.assertEqual(ret, 0)

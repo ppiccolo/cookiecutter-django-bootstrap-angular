@@ -6,7 +6,7 @@ before_script:
 install:
   - python setup.py dev
   - pip install zc.buildout
-  - buildout install node sh
+  - buildout
 script:
-  - DJANGO_SETTINGS_MODULE=project_name.settings nosetests
-  - gulp test
+  - DJANGO_SETTINGS_MODULE={{cookiecutter.project_name}}.settings bin/nosetests
+  - bin/gulp test
