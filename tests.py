@@ -21,10 +21,11 @@ class TestTemplate(unittest.TestCase):
     ]
 
     def setUp(self):
+        self.cwd = os.getcwd()
         self.tmpldir = os.path.dirname(os.path.abspath(__file__))
         self.binary = os.path.join(self.tmpldir, 'bin', 'cookiecutter')
         self.wd = tempfile.mkdtemp(prefix='cookiecutter')
-        self.addCleanup(os.chdir, os.getcwd())
+        self.addCleanup(os.chdir, self.cwd)
         self.addCleanup(shutil.rmtree, self.wd)
         os.chdir(self.wd)
 
@@ -40,5 +41,10 @@ class TestTemplate(unittest.TestCase):
 
         ret = subprocess.call(
             'bin/django-manage syncdb --noinput --migrate',
+            shell=True)
+        self.assertEqual(ret, 0)
+
+        ret = subprocess.call(
+            os.path.join(self.cwd, 'bin', 'tox'),
             shell=True)
         self.assertEqual(ret, 0)
