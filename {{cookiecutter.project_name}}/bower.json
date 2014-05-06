@@ -1,5 +1,5 @@
 {
-  "name": "{{ cookiecutter.repo_name }}",
+  "name": "{{ cookiecutter.project_name }}",
   "version": "{{ cookiecutter.version }}",
   "authors": [
     "{{cookiecutter.author_name}} <{{cookiecutter.email}}>"

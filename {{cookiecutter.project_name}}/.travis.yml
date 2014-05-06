@@ -8,5 +8,5 @@ install:
   - pip install zc.buildout
   - buildout install node sh
 script:
-  - DJANGO_SETTINGS_MODULE=repo_name.settings nosetests
+  - DJANGO_SETTINGS_MODULE=project_name.settings nosetests
   - gulp test

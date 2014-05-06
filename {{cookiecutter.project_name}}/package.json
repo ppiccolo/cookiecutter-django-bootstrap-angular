@@ -1,5 +1,5 @@
 {
-  "name": "{{ cookiecutter.repo_name }}",
+  "name": "{{ cookiecutter.project_name }}",
   "private": true,
   "version": "{{ cookiecutter.version }}",
   "description": "{{ cookiecutter.description }}",
@@ -18,7 +18,7 @@
   "scripts": {
     "postinstall": "bower install",
 
-    "test": "karma start {{ cookiecutter.repo_name }}/static/js/test/karma.conf.js",
+    "test": "karma start {{ cookiecutter.project_name }}/static/js/test/karma.conf.js",
 
     "update-webdriver": "webdriver-manager update",
     "protractor": "protractor test/protractor-conf.js",

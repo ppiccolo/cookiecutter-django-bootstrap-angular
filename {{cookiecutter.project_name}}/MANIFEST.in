@@ -1,6 +1,6 @@
 graft docs
 prune docs/_build
-graft {{cookiecutter.repo_name}}
+graft {{cookiecutter.project_name}}
 graft templates
 graft tests
 include *.rst *.cfg *.ini

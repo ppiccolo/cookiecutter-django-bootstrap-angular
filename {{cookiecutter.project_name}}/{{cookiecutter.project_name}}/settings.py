@@ -1,4 +1,4 @@
-# Django settings for {{ cookiecutter.repo_name }} project.
+# Django settings for {{ cookiecutter.project_name }} project.
 import os
 from os import path
 from django.template.defaultfilters import slugify  # NOQA
@@ -28,10 +28,10 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': '{{ cookiecutter.repo_name }}',
+        'LOCATION': '{{ cookiecutter.project_name }}',
         'TIMEOUT': 60,
         'KEY_PREFIX': os.environ.get('MEMCACHED_KEY_PREFIX',
-                                     '{{ cookiecutter.repo_name }}'),
+                                     '{{ cookiecutter.project_name }}'),
         'OPTIONS': {
             'MAX_ENTRIES': 10000,
             'CULL_FREQUENCY': 3,
@@ -143,10 +143,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
 )
 
-ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
+ROOT_URLCONF = '{{ cookiecutter.project_name }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = '{{ cookiecutter.repo_name }}.wsgi.application'
+WSGI_APPLICATION = '{{ cookiecutter.project_name }}.wsgi.application'
 
 TEMPLATE_DIRS = (
     path.realpath(path.join(PROJECT_DIR, '..', 'templates')),

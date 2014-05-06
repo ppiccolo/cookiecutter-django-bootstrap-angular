@@ -7,19 +7,19 @@ var karma = require('gulp-karma');
 
 // Include files to test with karma
 var testFiles = [
-  '{{cookiecutter.repo_name}}/static/bower_components/angular/angular.js',
-  '{{cookiecutter.repo_name}}/static/bower_components/angular-route/angular-route.js',
-  '{{cookiecutter.repo_name}}/static/bower_components/angular-mocks/angular-mocks.js',
-  '{{cookiecutter.repo_name}}/static/js/app/**/*.js',
-  '{{cookiecutter.repo_name}}/static/js/app/controllers/**/*.js',
-  '{{cookiecutter.repo_name}}/static/js/test/unit/**/*.js'
+  '{{cookiecutter.project_name}}/static/bower_components/angular/angular.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-route/angular-route.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-mocks/angular-mocks.js',
+  '{{cookiecutter.project_name}}/static/js/app/**/*.js',
+  '{{cookiecutter.project_name}}/static/js/app/controllers/**/*.js',
+  '{{cookiecutter.project_name}}/static/js/test/unit/**/*.js'
 ];
 
 // Compile the Less files
 gulp.task('less', function() {
-    return gulp.src('{{cookiecutter.repo_name}}/static/css/*.less')
+    return gulp.src('{{cookiecutter.project_name}}/static/css/*.less')
         .pipe(less())
-        .pipe(gulp.dest('{{cookiecutter.repo_name}}/static/css'));
+        .pipe(gulp.dest('{{cookiecutter.project_name}}/static/css'));
 });
 
 // Unit testing with karma
@@ -27,7 +27,7 @@ gulp.task('karma', function() {
   // Be sure to return the stream
   return gulp.src(testFiles)
     .pipe(karma({
-      configFile: '{{cookiecutter.repo_name}}/static/js/test/karma.conf.js',
+      configFile: '{{cookiecutter.project_name}}/static/js/test/karma.conf.js',
       action: 'run'
     }))
     .on('error', function(err) {
@@ -51,7 +51,7 @@ gulp.task('test', ['karma']);
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('{{cookiecutter.repo_name}}/static/css/*.less', ['less']);
+    gulp.watch('{{cookiecutter.project_name}}/static/css/*.less', ['less']);
     gulp.watch(testFiles, ['test']);
 });
 

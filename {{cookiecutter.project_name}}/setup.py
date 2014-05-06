@@ -30,7 +30,7 @@ if 'dev' in sys.argv:
 
 
 setup(
-    name='{{cookiecutter.repo_name}}',
+    name='{{cookiecutter.project_name}}',
     version=version,
     description="{{cookiecutter.description}}",
     long_description=read('README.rst'),

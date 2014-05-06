@@ -13,7 +13,7 @@ develop-eggs
 *.EGG-INFO
 eggs
 fake-eggs
-repo_name
+project_name
 parts
-{{ cookiecutter.repo_name }}/static
-{{ cookiecutter.repo_name }}/assets/bower_components
+{{ cookiecutter.project_name }}/static
+{{ cookiecutter.project_name }}/assets/bower_components

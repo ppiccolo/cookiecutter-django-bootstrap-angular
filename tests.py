@@ -17,7 +17,7 @@ class TestTemplate(unittest.TestCase):
 
     filenames = [
         'parts/wsgi/wsgi',
-        'repo_name.egg-info/entry_points.txt',
+        'project_name.egg-info/entry_points.txt',
     ]
 
     def setUp(self):
@@ -31,7 +31,7 @@ class TestTemplate(unittest.TestCase):
 
     def test_template(self):
         main.cookiecutter(self.tmpldir, checkout=False, no_input=True)
-        os.chdir(os.path.join(self.wd, 'repo_name'))
+        os.chdir(os.path.join(self.wd, 'project_name'))
         for filename in self.scripts:
             self.assertTrue(os.path.isfile(filename),
                             filename + ' not generated')
