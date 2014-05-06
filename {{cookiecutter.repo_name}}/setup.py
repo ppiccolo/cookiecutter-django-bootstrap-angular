@@ -23,8 +23,10 @@ test_requires = [
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-if 'dev' in sys.argv and os.path.isfile('.installed.cfg'):
-    os.remove('.installed.cfg')
+if 'dev' in sys.argv:
+    for filename in ('.installed.cfg', '.coverage'):
+        if os.path.isfile(filename):
+            os.remove(filename)
 
 
 setup(

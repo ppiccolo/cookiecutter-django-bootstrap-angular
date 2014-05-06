@@ -1,4 +1,4 @@
-# Django settings for {{ cookiecutter.project_name }} project.
+# Django settings for {{ cookiecutter.repo_name }} project.
 import os
 from os import path
 from django.template.defaultfilters import slugify  # NOQA
@@ -14,27 +14,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
-# Brand configuration
-BRAND_NAME = '{{ cookiecutter.project_name }}'
-
-BRAND_ROOT = os.environ.get(
-    'BRAND_ROOT',
-    path.realpath(path.join(PROJECT_DIR, '..', 'brands', BRAND_NAME)))
-
-BRAND = {
-    'name': BRAND_NAME,
-    # Prevents non-registered users to see content
-    'public': True,
-    # logo url if any
-    'logo': None,
-    # brand root contains templates and statics
-    'root': BRAND_ROOT,
-}
-
-FEATURED_COLLECTION = 42
-FEATURED_COLLECTIONS = [42, 44]
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -49,10 +28,10 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': '{{ cookiecutter.project_name }}',
+        'LOCATION': '{{ cookiecutter.repo_name }}',
         'TIMEOUT': 60,
         'KEY_PREFIX': os.environ.get('MEMCACHED_KEY_PREFIX',
-                                     '{{ cookiecutter.project_name }}'),
+                                     '{{ cookiecutter.repo_name }}'),
         'OPTIONS': {
             'MAX_ENTRIES': 10000,
             'CULL_FREQUENCY': 3,
@@ -164,10 +143,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
 )
 
-ROOT_URLCONF = '{{ cookiecutter.project_name }}.urls'
+ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = '{{ cookiecutter.project_name }}.wsgi.application'
+WSGI_APPLICATION = '{{ cookiecutter.repo_name }}.wsgi.application'
 
 TEMPLATE_DIRS = (
     path.realpath(path.join(PROJECT_DIR, '..', 'templates')),
