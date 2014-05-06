@@ -3,5 +3,6 @@ python:
   - 2.7
 install:
   - pip install cookiecutter
+  - pip install tox
 script:
   - nosetests -s -v

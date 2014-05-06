@@ -44,7 +44,8 @@ class TestTemplate(unittest.TestCase):
             shell=True)
         self.assertEqual(ret, 0)
 
-        ret = subprocess.call(
-            os.path.join(self.cwd, 'bin', 'tox'),
-            shell=True)
+        tox = os.path.join(self.cwd, 'bin', 'tox')
+        if not os.path.isfile(tox):
+            tox = 'tox'
+        ret = subprocess.call(tox, shell=True)
         self.assertEqual(ret, 0)
