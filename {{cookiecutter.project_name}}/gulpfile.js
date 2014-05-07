@@ -4,6 +4,24 @@ var gulp = require('gulp');
 // Include Our Plugins
 var less = require('gulp-less');
 var karma = require('gulp-karma');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+
+var vendorJsFiles = [
+  '{{cookiecutter.project_name}}/static/bower_components/jquery/dist/jquery.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/jquery.cookie/jquery.cookie.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular/angular.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-resource/angular-resource.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-route/angular-route.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-sanitize/angular-sanitize.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-cookies/angular-cookies.min.js',
+  '{{cookiecutter.project_name}}/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+];
+
+var appFiles = [
+  '{{cookiecutter.project_name}}/static/js/app/**/*.js',
+  '{{cookiecutter.project_name}}/static/js/app/controllers/**/*.js'
+];
 
 // Include files to test with karma
 var testFiles = [
@@ -20,6 +38,22 @@ gulp.task('less', function() {
     return gulp.src('{{cookiecutter.project_name}}/static/css/*.less')
         .pipe(less())
         .pipe(gulp.dest('{{cookiecutter.project_name}}/static/css'));
+});
+
+// Concatenate js vendo files
+gulp.task('concatjs:vendor', function () {
+  return gulp.src(vendorJsFiles)
+    .pipe(concat('vendor.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('{{cookiecutter.project_name}}/static/js'));
+});
+
+// Concatenate js app files
+gulp.task('concatjs:app', function () {
+  return gulp.src(appFiles)
+    .pipe(concat('app.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('{{cookiecutter.project_name}}/static/js'));
 });
 
 // Unit testing with karma
@@ -46,6 +80,9 @@ gulp.task('karma:watch', function () {
     .on('error', function(e) {throw e});
 });
 
+// Concatenations
+gulp.task('concat', ['concatjs:app', 'concatjs:vendor']);
+
 // Tests
 gulp.task('test', ['karma']);
 
@@ -56,4 +93,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['less', 'watch', 'test']);
+gulp.task('default', ['less', 'watch', 'test', 'concat']);
