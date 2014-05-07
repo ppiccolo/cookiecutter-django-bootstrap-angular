@@ -6,6 +6,7 @@ var less = require('gulp-less');
 var karma = require('gulp-karma');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
 
 var vendorJsFiles = [
   '{{cookiecutter.project_name}}/static/bower_components/jquery/dist/jquery.min.js',
@@ -51,6 +52,8 @@ gulp.task('concatjs:vendor', function () {
 // Concatenate js app files
 gulp.task('concatjs:app', function () {
   return gulp.src(appFiles)
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'))
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(gulp.dest('{{cookiecutter.project_name}}/static/js'));

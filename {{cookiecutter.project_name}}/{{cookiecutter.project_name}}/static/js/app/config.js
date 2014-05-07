@@ -10,7 +10,7 @@ angular.module('{{cookiecutter.project_name}}').config(['$stateProvider', '$urlR
     .state('home', {
       url: '/',
       templateUrl: '../../../templates/partials/index.html'
-    })
+    });
 
     // add other states here
 
