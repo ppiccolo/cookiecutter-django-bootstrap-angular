@@ -52,3 +52,6 @@ class TestTemplate(unittest.TestCase):
 
         ret = subprocess.call('bin/gulp test', shell=True)
         self.assertEqual(ret, 0)
+
+        ret = subprocess.call('flake8', shell=True)
+        self.assertEqual(ret, 0)

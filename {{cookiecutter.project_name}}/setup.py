@@ -51,4 +51,4 @@ setup(
     # -*- Entry points: -*-
     [console_scripts]
     """,
-    )
+)
