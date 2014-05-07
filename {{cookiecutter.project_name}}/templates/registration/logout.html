@@ -1,0 +1,9 @@
+{% raw %}{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% endraw %}{{cookiecutter.project_name}}{% raw %} - {{ title }}{% endblock title %}
+
+{% block content %}
+  <p>{% trans "You have successfully been logged out." %}</p>
+{% endblock %}
+{% endraw %}

@@ -17,6 +17,9 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     # Home
-    (r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+
+    # Account registration
+    url(r'^accounts/', include('registration.backends.default.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

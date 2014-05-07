@@ -12,6 +12,7 @@ install_requires = [
     'django-registration',
     'django-autoslug',
     'south',
+    'django-bootstrap3',
 ]
 
 test_requires = [

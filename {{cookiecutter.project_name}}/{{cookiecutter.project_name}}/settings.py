@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'south',
     'registration',
     'autoslug',
+    'bootstrap3',
 )
 
 LOGIN_URL = '/accounts/login/'
