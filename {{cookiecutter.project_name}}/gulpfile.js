@@ -90,7 +90,8 @@ gulp.task('test', ['karma']);
 gulp.task('watch', function() {
     gulp.watch('{{cookiecutter.project_name}}/static/css/*.less', ['less']);
     gulp.watch(testFiles, ['test']);
+    gulp.watch(appFiles, ['concatjs:app']);
 });
 
 // Default Task
-gulp.task('default', ['less', 'watch', 'test', 'concat']);
+gulp.task('default', ['less', 'test', 'concat']);
