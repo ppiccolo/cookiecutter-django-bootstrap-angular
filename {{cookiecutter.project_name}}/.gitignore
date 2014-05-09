@@ -1,0 +1,16 @@
+*.pyc
+*.nja
+*.pyo
+*~
+db.dat
+*.swp
+pip-*.gz
+vtenv
+eggs
+.project
+.pydevproject
+*.egg-info/
+parts/
+develop-eggs/
+bin/
+.installed.cfg
