@@ -1,0 +1,42 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+   - name: Set mailname
+     shell: "echo 'debian.local' > /etc/mailname"
+   - name: Set hosts
+     lineinfile: dest=/etc/hosts regexp='^127\.0\.1\.1' line='127.0.1.1 debian.local'
+   - name: Install packages
+     apt: >
+       pkg={{ item }}
+       state=installed
+       update_cache=yes
+     with_items:
+       - build-essential
+       - nginx
+       - git
+       - python-dev
+       - python-pip
+       - postfix
+       - python-psycopg2
+       - python-django
+       - postgresql
+       - libpq-dev 
+       - sudo
+   - name: Create user
+     user: name=test
+   - name: Add Db user 
+     postgresql_user: >
+       name=test
+       role_attr_flags=CREATEDB
+     sudo: true
+     sudo_user: postgres
+   - name: Add Db 
+     postgresql_db: >
+       name=test
+       owner=test
+     sudo: true
+     sudo_user: postgres
+  handlers:
+   - name: restart nginx
+     service: name=nginx state=restarted
