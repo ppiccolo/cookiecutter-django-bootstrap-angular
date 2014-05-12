@@ -3,9 +3,11 @@
   sudo: yes
   tasks:
    - name: Set mailname
-     shell: "echo 'debian.local' > /etc/mailname"
+     lineinfile: dest=/etc/mailname regexp='.*' line="debian.local"
    - name: Set hosts
-     lineinfile: dest=/etc/hosts regexp='^127\.0\.1\.1' line='127.0.1.1 debian.local'
+     lineinfile: dest=/etc/hosts regexp='^127\.0\.1\.1' line='127.0.1.1 debian.local debian-7'
+   - name: Add Suoer postgres 
+     lineinfile: dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
    - name: Install packages
      apt: >
        pkg={{ item }}
@@ -23,18 +25,16 @@
        - postgresql
        - libpq-dev 
        - sudo
-   - name: Create user
-     user: name=test
    - name: Add Db user 
      postgresql_user: >
-       name=test
+       name=vagrant
        role_attr_flags=CREATEDB
      sudo: true
      sudo_user: postgres
    - name: Add Db 
      postgresql_db: >
-       name=test
-       owner=test
+       name=vagrant
+       owner=vagrant
      sudo: true
      sudo_user: postgres
   handlers:
