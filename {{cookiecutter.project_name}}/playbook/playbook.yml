@@ -6,7 +6,7 @@
      lineinfile: dest=/etc/mailname regexp='.*' line="debian.local"
    - name: Set hosts
      lineinfile: dest=/etc/hosts regexp='^127\.0\.1\.1' line='127.0.1.1 debian.local debian-7'
-   - name: Add Suoer postgres 
+   - name: Add Suoer postgres
      lineinfile: dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
    - name: Install packages
      apt: >
@@ -23,20 +23,28 @@
        - python-psycopg2
        - python-django
        - postgresql
-       - libpq-dev 
+       - libpq-dev
        - sudo
-   - name: Add Db user 
+   - name: Add Db user
      postgresql_user: >
        name=vagrant
        role_attr_flags=CREATEDB
      sudo: true
      sudo_user: postgres
-   - name: Add Db 
+   - name: Add Db
      postgresql_db: >
        name=vagrant
        owner=vagrant
      sudo: true
      sudo_user: postgres
+   - name: Boostrap project
+     shell: "python bootstrap.py"
+     chdir: "/vagrant"
+     sudo: false
+   - name: Buildout project
+     shell: "./bin/buildout"
+     chdir: "/vagrant"
+     sudo: false
   handlers:
    - name: restart nginx
      service: name=nginx state=restarted
