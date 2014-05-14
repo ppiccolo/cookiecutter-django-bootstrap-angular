@@ -1,5 +1,6 @@
 // Include gulp
-var gulp = require('gulp'); 
+var gulp = require('gulp');
+var args   = require('yargs').argv;
 
 // Include Our Plugins
 var less = require('gulp-less');
@@ -7,6 +8,7 @@ var karma = require('gulp-karma');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
+var bg = require("gulp-bg");
 
 var vendorJsFiles = [
   '{{cookiecutter.project_name}}/static/bower_components/jquery/dist/jquery.min.js',
@@ -88,6 +90,10 @@ gulp.task('concat', ['concatjs:app', 'concatjs:vendor']);
 
 // Tests
 gulp.task('test', ['karma']);
+
+// Serve django project
+var port = args.port || '8000';
+gulp.task("server", bg("bin/django-manage", "runserver", "0.0.0.0:"+port));
 
 // Watch Files For Changes
 gulp.task('watch', function() {

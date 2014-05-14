@@ -12,5 +12,7 @@ eggs
 *.egg-info/
 parts/
 develop-eggs/
+node_modules/
 bin/
+src/
 .installed.cfg
