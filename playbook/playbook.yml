@@ -38,12 +38,10 @@
      sudo: true
      sudo_user: postgres
    - name: Boostrap project
-     shell: "python bootstrap.py"
-     chdir: "/vagrant"
+     shell: chdir=/vagrant python bootstrap.py
      sudo: false
    - name: Buildout project
-     shell: "./bin/buildout"
-     chdir: "/vagrant"
+     command: chdir=/vagrant "./bin/buildout"
      sudo: false
   handlers:
    - name: restart nginx
