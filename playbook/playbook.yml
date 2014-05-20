@@ -25,6 +25,7 @@
        - postgresql
        - libpq-dev
        - sudo
+       - supervisor 
    - name: Add Db user
      postgresql_user: >
        name=vagrant
@@ -37,12 +38,28 @@
        owner=vagrant
      sudo: true
      sudo_user: postgres
+   - name: Add supervisordconf
+     template: >
+        src=supervisor.conf.j2
+        dest=/etc/supervisor/conf.d/vagrant.conf
+        mode=644
+   - name: Add nginx conf
+     template: >
+        src=nginx-default.j2
+        dest=/etc/nginx/sites-available/default
+        mode=644
+     notify: 
+      - restart nginx
    - name: Boostrap project
      shell: chdir=/vagrant python bootstrap.py
      sudo: false
    - name: Buildout project
      command: chdir=/vagrant "./bin/buildout"
      sudo: false
+     notify: 
+      - restart supervisord
   handlers:
    - name: restart nginx
      service: name=nginx state=restarted
+   - name: restart supervisord
+     supervisorctl: name=vagrant state=restarted

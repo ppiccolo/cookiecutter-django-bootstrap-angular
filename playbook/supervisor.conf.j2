@@ -1,0 +1,6 @@
+[program:vagrant]
+command = /vagrant/bin/django-serve                    ; Command to start app
+user = vagrant                                                     ; User to run as
+stdout_logfile = /vagrant/supervisord.log   ; Where to write log messages
+redirect_stderr = true   
+directory=/vagrant
