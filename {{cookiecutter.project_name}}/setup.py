@@ -7,9 +7,9 @@ version = '{{cookiecutter.version}}'
 
 install_requires = [
     'Sphinx',
-    'Django>=1.6',
+    'Django=1.6',
     'DjangoDevKit',
-    'django-registration-redux',
+    'django-registration',
     'django-autoslug',
     'south',
     'django-bootstrap3',
